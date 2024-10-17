@@ -30,8 +30,9 @@ pipeline {
 
 
                 // To run Maven on a Windows agent, use
-                bat 'docker build -t employee-info-service .'
-                bat 'docker run -p 8090:8090 -d --name springsecurity-sr spring-security-server'
+                bat 'docker build -t spring-security-server .'
+                bat 'docker network create -d bridge oms-network'
+                bat 'docker run --network oms-network -p 8090:8090 -d --name springsecurity-sr spring-security-server'
             }
         }
     }
